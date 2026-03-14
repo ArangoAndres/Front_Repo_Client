@@ -1,0 +1,23 @@
+.clientes-container {
+  padding: 40px;
+}
+
+.buscador {
+  width: 400px;
+  padding: 12px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.lista-clientes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cliente-card {
+  padding: 20px;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
