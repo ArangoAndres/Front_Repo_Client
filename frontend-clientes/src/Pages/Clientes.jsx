@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { getClientes } from "../services/clientesService";
 import "../Styles/clientes.css";
+import { useNavigate } from "react-router-dom";
 
 function Clientes() {
 
   const [clientes, setClientes] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-
+  const navigate = useNavigate();
 useEffect(() => {
   const cargarClientes = async () => {
     try {
@@ -39,8 +40,10 @@ useEffect(() => {
       <div className="lista-clientes">
 
         {clientesFiltrados.map((cliente) => (
-          <div key={cliente.id} className="cliente-card">
-
+          <div key={cliente.id} 
+          className="cliente-card"
+          onClick={() => navigate(`/clientes/${cliente.id}`)}
+>
             <h3>{cliente.nombre}</h3>
             <p>{cliente.cedula}</p>
             <p>{cliente.telefono}</p>
