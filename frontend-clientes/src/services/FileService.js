@@ -48,7 +48,7 @@ export const deleteFile = async (id) => {
 // ✅ Descargar archivo
 export const downloadFile = async (id) => {
   const response = await api.get(`/files/download/${id}`, {
-    responseType: "blob" // 🔥 CLAVE
+    responseType: "blob" 
   });
 
   return response;

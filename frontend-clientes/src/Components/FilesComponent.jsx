@@ -61,27 +61,26 @@ function ClienteArchivos({ clienteId }) {
 
   // ✅ Descargar
   const handleDownload = async (file) => {
-    try {
+  try {
+    const response = await downloadFile(file.id);
 
-      const response = await downloadFile(file.id);
+    const url = window.URL.createObjectURL(
+      new Blob([response.data])
+    );
 
-      const url = window.URL.createObjectURL(
-        new Blob([response.data])
-      );
+    console.log(response);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", file.nombreOriginal);
 
-      const link = document.createElement("a");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 
-      link.href = url;
-      link.setAttribute("download", file.nombreOriginal);
-
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
   // ✅ Visualizar
