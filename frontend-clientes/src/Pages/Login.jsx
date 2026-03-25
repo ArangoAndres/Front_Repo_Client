@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { loginUser } from "../services/authService";
-import "../Styles/login.css";
 import { useNavigate } from "react-router-dom";
-function Login() {
-
+import "../Styles/login.css";
+import { loginUser } from "../services/authService";
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //pa navegar a otra ruta luego del login correcto
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+
+   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -27,30 +26,41 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
+    <div className="login-page">
+      <div className="login-card">
+        <div className="login-header">
+          <h1>CRM Clientes</h1>
+          <p>Inicia sesión para continuar</p>
+        </div>
 
-        <h2>Iniciar sesión</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label>Usuario</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Ingresa tu usuario"
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Usuario"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Ingresa tu contraseña"
+            />
+          </div>
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <button type="submit" className="login-button">
+            Iniciar sesión
+          </button>
+        </form>
 
-        <button type="submit">Ingresar</button>
-
-      </form>
+        <p className="login-footer">Sistema de gestión de clientes</p>
+      </div>
     </div>
   );
 }
-
-export default Login;
